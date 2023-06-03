@@ -28,7 +28,6 @@ class UsuarioController {
                 const { nome, turma, email } = req.body;
                 const usuario = { nome, turma, email };
                 console.log(usuario);
-                const campo = nome | turma | email;
                 if (!nome) {
                     res.status(422).json({
                         error: true,
