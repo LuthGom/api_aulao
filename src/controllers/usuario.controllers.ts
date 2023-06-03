@@ -7,10 +7,10 @@ import { Usuario } from "../models/Usuario.models";
 export default class UsuarioController {
   static async create(req: Request, res: Response): Promise<void> {
     try {
-      const { nome, apelido, email, senha } = req.body;
+      const { nome, turma, email } = req.body;
 
-      const usuario = { nome, apelido, email, senha };
-      const campo = nome | email | senha;
+      const usuario = { nome, turma, email };
+      const campo = nome | email | turma;
       if (!campo) {
         res.status(422).json({
           error: true,
