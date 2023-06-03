@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/server.ts",
-    "start": "node ./build/server.js"
+    "start": "node ./dist/server.js"
   },
   "engines": {"node": ">=14.20"},
   "dependencies": {
