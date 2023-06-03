@@ -8,6 +8,7 @@
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/server.ts",
     "start": "node server.js"
   },
+  "engines": {"node": ">=14.20"},
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.1.3",
