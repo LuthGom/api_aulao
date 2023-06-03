@@ -23,6 +23,8 @@ export default class UsuarioController {
           .json({ error: false, message: "Usuario cadatrado com sucesso!" });
       }
     } catch (error) {
+      console.log(error);
+
       res.status(500).json({ error: true, errorMessage: error });
     }
   }
@@ -57,7 +59,7 @@ export default class UsuarioController {
 
     const { ...body }: object = req.body;
 
-    const dadosAtualizados = body;
+    const dadosAtualizados = { ...body };
 
     const usuario = Usuario.find().where("email").equals(email).exec();
 
@@ -68,7 +70,7 @@ export default class UsuarioController {
       });
     } else {
       try {
-        await Usuario.findByIdAndUpdate(
+        await Usuario.findOneAndUpdate(
           { email: email },
           { $set: dadosAtualizados },
           { new: true }
@@ -91,19 +93,22 @@ export default class UsuarioController {
     const usuario = await Usuario.find().where("email").equals(email).exec();
 
     if (!usuario) {
-        res.status(404).json({
-          error: true,
-          errorMessage: "Usuário não encontrado. Tente novamente!",
-        });
-      }
-      try {
-        await Usuario.findByIdAndDelete(email);
-        res
-          .status(200)
-          .json({
-            error: false,
-            message: `Usuário ${usuario[0]?.nome} deletado com sucesso!`,
-          });
-        }catch(error){}
+      res.status(404).json({
+        error: true,
+        errorMessage: "Usuário não encontrado. Tente novamente!",
+      });
+    }
+    try {
+      await Usuario.findOneAndDelete({ email: email });
+      res.status(200).json({
+        error: false,
+        message: `Usuário ${usuario[0]?.nome} deletado com sucesso!`,
+      });
+    } catch (error) {
+      res.status(400).json({
+        error: true,
+        errorMessage: error,
+      });
+    }
   }
 }
