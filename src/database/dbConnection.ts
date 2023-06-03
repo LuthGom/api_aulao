@@ -3,7 +3,10 @@ import mongoose from "mongoose";
 mongoose.set("strictQuery", true);
 mongoose.set("strictPopulate", false);
 const url = process.env.MONGO_URL;
-const db = mongoose.connect(url, { dbName: process.env.MONGO_DB });
+const db = mongoose.connect(
+  "mongodb+srv://api_aulao:D47e52HeGe6vowKQ@cluster0.wjmiw.mongodb.net/",
+  { dbName: "api_aulao" }
+);
 
 db.then(() => {
   console.log("Conexão com o banco bem sucedida");
