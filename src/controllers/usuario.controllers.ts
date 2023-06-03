@@ -8,13 +8,13 @@ export default class UsuarioController {
   static async create(req: Request, res: Response): Promise<void> {
     try {
       const { nome, turma, email } = req.body;
-
+      
       const usuario = { nome, turma, email };
-      const campo = nome | email | turma;
-      if (!campo) {
+      console.log(usuario);
+      if (!nome) {
         res.status(422).json({
           error: true,
-          errorMessage: `O ${campo} é um campo obrigatório para cadastro!`,
+          errorMessage: `O ${nome} é um campo obrigatório para cadastro!`,
         });
       } else {
         await Usuario.create(usuario);

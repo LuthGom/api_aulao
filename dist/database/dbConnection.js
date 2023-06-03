@@ -7,7 +7,7 @@ const mongoose_1 = __importDefault(require("mongoose"));
 mongoose_1.default.set("strictQuery", true);
 mongoose_1.default.set("strictPopulate", false);
 const url = process.env.MONGO_URL;
-const db = mongoose_1.default.connect(url, { dbName: process.env.MONGO_DB });
+const db = mongoose_1.default.connect("mongodb+srv://api_aulao:D47e52HeGe6vowKQ@cluster0.wjmiw.mongodb.net/", { dbName: "api_aulao" });
 db.then(() => {
     console.log("Conexão com o banco bem sucedida");
 }).catch((erro) => {
